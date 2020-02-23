@@ -42,3 +42,18 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## 相关资料
+[思否上 githubapi 的介绍,](https://segmentfault.com/a/1190000015144126?utm_source=tag-newest)
+
+[github 官方文档](https://developer.github.com/v3/#increasing-the-unauthenticated-rate-limit-for-oauth-applications)
+
+## note
+react 路由匹配采用 react-router-dom,extension 采用 memory.
+
+注意路由匹配问题,具名的放前面!!!
+
+## 1582472864
+基础功能完成,暂时搁置
+`REACT_APP_IS_EXTENSION=false` 环境变脸

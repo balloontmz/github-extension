@@ -1,10 +1,13 @@
+@import '~antd/dist/antd.css';
+
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  width: 100vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,17 +18,83 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  /* min-height: 10vh; */
+  width: 100%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: fixed;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  /* top: 0; */
+}
+
+.common-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+/* vh 应该代表百分比 */
+/* https://juejin.im/entry/59b00e46f265da2491513bcc */
+/* [固定加 fixed](https://www.jianshu.com/p/13ede74010dd) */
+.App-section {
+  background-color: #282c34;
+  min-height: 90vh;
+  min-width: 100vh;
+  padding-top: 10vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+.App-section-detail {
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
+}
+
+.source-name-section {
+  width: 10vh;
+  height: 200;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-left: 1vh;
+}
+
+.sour-name-detail {
+  width: 8vh;
+  text-align: center;
+}
+
+.series-style{
+  width: 70vh;
+}
+
+.link-area-style {
+  width: 20vh;
+  text-align: center;
+}
+
+.item-avatar {
+  /* height: 200px;
+  padding-top: 100px; */
+}
+
 .App-link {
   color: #61dafb;
+}
+
+.title-style {
+  color: wheat;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +104,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.markdown-style {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 20px 20px 20px 20px;
+}
+
+h1, h2, h3, h4, h5 {
+  color: rgba(255, 255, 255, 0.85);
 }
