@@ -13,6 +13,8 @@ import ReactMarkdown from 'react-markdown'
 
 const count = 3
 
+const uniqueMap = new Map()
+
 let isExtension = process.env.REACT_APP_IS_EXTENSION
 
 interface SectionProps {
@@ -31,13 +33,15 @@ export class SectionDetail extends React.Component<SectionProps, {}> {
     componentDidMount() {
         this.getData((res: any) => {
             console.log('当前的 res 为:', res)
-            const data = this.state.data.concat(res);
-            console.log('合并之后的 data 为:', data)
-            this.setState({
-                initLoading: false,
-                data: data,
-                list: data,
-            });
+            if (res) {
+                const data = this.state.data.concat(res);
+                console.log('合并之后的 data 为:', data)
+                this.setState({
+                    initLoading: false,
+                    data: data,
+                    list: data,
+                });
+            }
         });
     }
 
@@ -69,6 +73,7 @@ export class SectionDetail extends React.Component<SectionProps, {}> {
             chrome.storage.sync.get("githubExtensionLinkArr", (data) => {
                 console.log('获取结果成功,结果为:(应该是没结果)')
                 console.log(data.githubExtensionLinkArr)
+
                 for (let i = 0; i < data.githubExtensionLinkArr.length; i++) {
                     const element = data.githubExtensionLinkArr[i];
 
@@ -97,16 +102,23 @@ export class SectionDetail extends React.Component<SectionProps, {}> {
         //     console.log(res)
         //     callback(res.data)
         // })
-    };
+    }
 
     loadGithubInfoUseLink = async (link: string): Promise<Object | null> => {
         //每个 link 都是包含 `github.com` 的字符串
         let loc = link.search('github.com')
         let info = link.substr(loc)
         let infoArr = info.split("/")
-        if (infoArr.length < 3) {
+        if (!infoArr || infoArr.length < 3) {
+            console.log('数组不存在或者长度小于三,当前数组为:', infoArr)
             return null
         }
+        //保证每个链接只出现一次
+        if (uniqueMap.get(infoArr[1] + infoArr[2])) {
+            console.log('结果重复,结果为:', infoArr)
+            return null
+        }
+        uniqueMap.set(infoArr[1] + infoArr[2], 1)
         console.log('切分之后的结果数组为:', infoArr)
         let resourceUrl = `https://api.github.com/repos/${infoArr[1]}/${infoArr[2]}/stats/participation`
         let res = await axios.get(resourceUrl, { responseType: 'json' })
